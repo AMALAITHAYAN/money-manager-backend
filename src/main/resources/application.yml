@@ -2,17 +2,23 @@ server:
   port: ${PORT:8080}
 
 spring:
+  application:
+    name: money-manager-backend
+
   data:
     mongodb:
       uri: ${SPRING_DATA_MONGODB_URI}
 
 app:
   cors:
-    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+    # Local + Vercel (Default)
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173,https://money-manager-frontend-ecru.vercel.app}
+
   security:
     edit-window-hours: ${EDIT_WINDOW_HOURS:12}
 
 jwt:
+  # Must be Base64 (256-bit+)
   secret: ${JWT_SECRET}
   expiration-ms: ${JWT_EXPIRATION_MS:86400000}
 
